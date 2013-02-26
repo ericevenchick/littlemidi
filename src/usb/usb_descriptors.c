@@ -1,20 +1,20 @@
 /********************************************************************
- FileName:     	usb_descriptors.c
+ FileName:	usb_descriptors.c
  Dependencies:	See INCLUDES section
  Processor:		PIC18 or PIC24 USB Microcontrollers
  Hardware:		The code is natively intended to be used on the following
- 				hardware platforms: PICDEMô FS USB Demo Board, 
- 				PIC18F87J50 FS USB Plug-In Module, or
- 				Explorer 16 + PIC24 USB PIM.  The firmware may be
- 				modified for use on other USB platforms by editing the
- 				HardwareProfile.h file.
- Complier:  	Microchip C18 (for PIC18) or C30 (for PIC24)
+				hardware platforms: PICDEMô FS USB Demo Board,
+				PIC18F87J50 FS USB Plug-In Module, or
+				Explorer 16 + PIC24 USB PIM.  The firmware may be
+				modified for use on other USB platforms by editing the
+				HardwareProfile.h file.
+ Complier:	Microchip C18 (for PIC18) or C30 (for PIC24)
  Company:		Microchip Technology, Inc.
 
  Software License Agreement:
 
  The software supplied herewith by Microchip Technology Incorporated
- (the ìCompanyî) for its PICÆ Microcontroller is intended and
+ (the ìCompanyî) for its PIC‡§ç Microcontroller is intended and
  supplied to you, the Companyís customer, for use solely and
  exclusively on Microchip PIC Microcontroller products. The
  software is owned by the Company and/or its supplier, and is
@@ -38,7 +38,7 @@ Filling in the descriptor values in the usb_descriptors.c file:
 -------------------------------------------------------------------
 
 [Device Descriptors]
-The device descriptor is defined as a USB_DEVICE_DESCRIPTOR type.  
+The device descriptor is defined as a USB_DEVICE_DESCRIPTOR type.
 This type is defined in usb_ch9.h  Each entry into this structure
 needs to be the correct length for the data type of the entry.
 
@@ -59,7 +59,7 @@ _SELF tells the USB host that this device is self-powered. The
 _RWU tells the USB host that this device supports Remote Wakeup.
 
 [Endpoint Descriptors]
-Like the configuration descriptor, the endpoint descriptors were 
+Like the configuration descriptor, the endpoint descriptors were
 changed in v2.x of the stack from a structure to a BYTE array.  As
 endpoint descriptors also has a field that are multi-byte entities,
 please be sure to specify both bytes of the field.  For example, for
@@ -142,7 +142,7 @@ is a dummy place holder since configuration 0 is the un-configured
 state according to the definition in the USB specification.
 
 ********************************************************************/
- 
+
 /*********************************************************************
  * Descriptor specific type definitions are defined in:
  * usb_device.h
@@ -154,7 +154,7 @@ state according to the definition in the USB specification.
 #define __USB_DESCRIPTORS_C
 
 /** INCLUDES *******************************************************/
-#include "./USB/usb.h"
+#include "usb.h"
 
 /** CONSTANTS ******************************************************/
 #if defined(__18CXX)
@@ -192,7 +192,7 @@ ROM BYTE configDescriptor1[]={
     0,                      // Configuration string index
     _DEFAULT | _SELF,               // Attributes, see usb_device.h
     50,                     // Max power consumption (2X mA)
-							
+
     /* Interface Descriptor */
     0x09,//sizeof(USB_INTF_DSC),   // Size of this descriptor in bytes
     USB_DESCRIPTOR_INTERFACE,               // INTERFACE descriptor type

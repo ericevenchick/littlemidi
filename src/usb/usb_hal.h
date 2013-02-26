@@ -10,7 +10,7 @@ Description:
 
     This file is located in the "\<Install Directory\>\\Microchip\\Include\\USB"
     directory.
-    
+
     When including this file in a new project, this file can either be
     referenced from the directory in which it was installed or copied
     directly into the user application folder. If the first method is
@@ -20,17 +20,17 @@ Description:
     application folder is located in the same folder as the Microchip
     folder (like the current demo folders), then the following include
     paths need to be added to the application's project:
-    
+
     .
     ..\\..\\MicrochipInclude
-   
+
     If a different directory structure is used, modify the paths as
     required. An example using absolute paths instead of relative paths
     would be the following:
-    
+
     C:\\Microchip Solutions\\Microchip\\Include
-    
-    C:\\Microchip Solutions\\My Demo Application 
+
+    C:\\Microchip Solutions\\My Demo Application
 *******************************************************************************/
 //DOM-IGNORE-BEGIN
 /******************************************************************************
@@ -43,18 +43,18 @@ Description:
  Dependancies:    none
  Processor:       PIC18, PIC24, or PIC32 USB Microcontrollers
  Hardware:        The code is natively intended to be used on the following
-     				hardware platforms: PICDEM™ FS USB Demo Board, 
-     				PIC18F87J50 FS USB Plug-In Module, or
-     				Explorer 16 + PIC24 USB PIM.  The firmware may be
-     				modified for use on other USB platforms by editing the
-     				HardwareProfile.h file.
+				hardware platforms: PICDEM™ FS USB Demo Board,
+				PIC18F87J50 FS USB Plug-In Module, or
+				Explorer 16 + PIC24 USB PIM.  The firmware may be
+				modified for use on other USB platforms by editing the
+				HardwareProfile.h file.
  Compiler:        Microchip C18 (for PIC18) or C30 (for PIC24)
  Company:         Microchip Technology, Inc.
 
  Software License Agreement:
 
  The software supplied herewith by Microchip Technology Incorporated
- (the “Company”) for its PICmicro® Microcontroller is intended and
+ (the “Company”) for its PICmicroà¤ Microcontroller is intended and
  supplied to you, the Company’s customer, for use solely and
  exclusively on Microchip PICmicro Microcontroller products. The
  software is owned by the Company and/or its supplier, and is
@@ -78,10 +78,10 @@ Description:
   Rev    Description
   ----   -----------
   2.6-   No Change
-  2.6a   
+  2.6a
 
   2.7    Minor changes changes to the structure of the conditional
-         compilation statement ordering.
+	 compilation statement ordering.
 
   2.7a   No Change
 ********************************************************************/
@@ -91,21 +91,21 @@ Description:
 //DOM-IGNORE-END
 
 #if defined(__18CXX)
-    #include "USB/usb_hal_pic18.h"
+    #include "usb_hal_pic18.h"
 #elif defined(__C30__)
-	#if defined(__dsPIC33E__) 
-	    #include "USB/usb_hal_dspic33E.h"
+	#if defined(__dsPIC33E__)
+	    #include "usb_hal_dspic33E.h"
 	#elif defined(__PIC24E__)
-		#include "USB/usb_hal_pic24e.h"
+		#include "usb_hal_pic24e.h"
 	#else
-    #include "USB/usb_hal_pic24.h"
+    #include "usb_hal_pic24.h"
 	#endif
 #elif defined(__PIC32MX__)
-    #include "USB/usb_hal_pic32.h"
+    #include "usb_hal_pic32.h"
 #else
     #error "Silicon Platform not defined"
 #endif
-    
+
 
 /**********************
  Interface Routines
@@ -113,33 +113,33 @@ Description:
 
 /*************************************************************************
     Function:
-        void USBHALSetBusAddress( BYTE addr )
-        
+	void USBHALSetBusAddress( BYTE addr )
+
     Description:
-        This routine sets the address of the system on the USB
-        when acting as a peripheral device.
-        
+	This routine sets the address of the system on the USB
+	when acting as a peripheral device.
+
     Preconditions:
-        1. USBHALInitialize must have been called to
-           initialize the USB HAL.
-        2. Endpoint zero (0) must be configured as appropriate
-           by calls to USBHALSetEpConfiguration.
-        3. The system must have been enumerated on the USB (as
-           a device).
-           
+	1. USBHALInitialize must have been called to
+	   initialize the USB HAL.
+	2. Endpoint zero (0) must be configured as appropriate
+	   by calls to USBHALSetEpConfiguration.
+	3. The system must have been enumerated on the USB (as
+	   a device).
+
     Parameters:
-        addr    Desired address of this device on the USB.
-        
+	addr    Desired address of this device on the USB.
+
     Return Values:
-        None
-        
+	None
+
     Side Effect:
-        The bus address has been set.
-        
+	The bus address has been set.
+
     Remmarks:
-        The address is assigned by the host and is received in
-        a SET_ADDRESS setup request.
-                  
+	The address is assigned by the host and is received in
+	a SET_ADDRESS setup request.
+
  *************************************************************************/
 /*
  This routine is implemented as a macro to a lower-level level routine.
@@ -152,31 +152,31 @@ void USBHALSetBusAddress( BYTE addr );
 
 /*************************************************************************
     Function:
-        void USBHALControlUsbResistors( BYTE flags );
-        
+	void USBHALControlUsbResistors( BYTE flags );
+
     Description:
-        This routine enables or disables the USB pull-up or
-        pull-down resistors as requested.
-        
+	This routine enables or disables the USB pull-up or
+	pull-down resistors as requested.
+
     Precondition:
-        USBInitialize must have been called to initialize the
-        USB SW stack.
-        
+	USBInitialize must have been called to initialize the
+	USB SW stack.
+
     Parameters:
-        flags - This is a bit-mapped flags value indicating
-        which resistors to enable or disable (see below).
+	flags - This is a bit-mapped flags value indicating
+	which resistors to enable or disable (see below).
 
     Return Values:
-        TRUE if successful, FALSE if not.
-   
+	TRUE if successful, FALSE if not.
+
     Side Effects:
-        The resistors are enabled as requested.
-        
+	The resistors are enabled as requested.
+
     Remarks:
-        Used for USB peripheral control to connect to or
-        disconnect from the bus.  Otherwise, used for OTG
-        SRP/HNP and host support.
-        
+	Used for USB peripheral control to connect to or
+	disconnect from the bus.  Otherwise, used for OTG
+	SRP/HNP and host support.
+
  *************************************************************************/
 
 /*
@@ -210,23 +210,23 @@ void USBHALSetBusAddress( BYTE addr );
 /*************************************************************************
     Function:
        BOOL USBHALSessionIsValid( void )
-        
+
     Description:
-        This routine determines if there is currently a valid
-        USB session or not.
-        
+	This routine determines if there is currently a valid
+	USB session or not.
+
     Precondition:
-        USBInitialize must have been called to initialize the
-        USB SW stack.
-        
+	USBInitialize must have been called to initialize the
+	USB SW stack.
+
     Parameters:
-        None
-        
+	None
+
     Return Values:
-        TRUE if the session is currently valid, FALSE if not.
-        
+	TRUE if the session is currently valid, FALSE if not.
+
     Remarks:
-        Only used for host and OTG support.
+	Only used for host and OTG support.
 
  *************************************************************************/
 
@@ -235,25 +235,25 @@ BOOL USBHALSessionIsValid( void );
 
 /*************************************************************************
     Function:
-        USBHALControlBusPower
-        
+	USBHALControlBusPower
+
     Description:
-        This routine provides a bitmap of the most recent
-        error conditions to occur.
-        
+	This routine provides a bitmap of the most recent
+	error conditions to occur.
+
     Precondition:
-        USBInitialize must have been called to initialize the
-        USB SW stack.
-        
+	USBInitialize must have been called to initialize the
+	USB SW stack.
+
     Parameters:
-        cmd - Identifies desired command (see below).
-        
+	cmd - Identifies desired command (see below).
+
     Return Values:
-        TRUE if successful, FALSE if not.
-    
+	TRUE if successful, FALSE if not.
+
     Remarks:
-        Only used for host and OTG support.
-                  
+	Only used for host and OTG support.
+
  *************************************************************************/
 
 BOOL USBHALControlBusPower( BYTE cmd );
@@ -271,30 +271,30 @@ BOOL USBHALControlBusPower( BYTE cmd );
 
 /*************************************************************************
     Function:
-        unsigned long USBHALGetLastError( void )
-        
+	unsigned long USBHALGetLastError( void )
+
     Description:
-        This routine provides a bitmap of the most recent
-        error conditions to occur.
-        
+	This routine provides a bitmap of the most recent
+	error conditions to occur.
+
     Precondition:
-        USBInitialize must have been called to initialize the
-        USB SW stack.
-        
+	USBInitialize must have been called to initialize the
+	USB SW stack.
+
     Parameters:
-        None
-        
+	None
+
     Return Values:
-        Bitmap indicating the most recent error condition(s).
-        
+	Bitmap indicating the most recent error condition(s).
+
     Side Effect:
-        Error record is cleared.
-        
+	Error record is cleared.
+
     Remarks:
-        Although record of the error state is cleared, nothing
-        is done to fix the condition or recover from the
-        error.  The client must take appropriate steps.
-                  
+	Although record of the error state is cleared, nothing
+	is done to fix the condition or recover from the
+	error.  The client must take appropriate steps.
+
  *************************************************************************/
 
 unsigned long USBHALGetLastError( void );
@@ -317,30 +317,30 @@ unsigned long USBHALGetLastError( void );
 
 /*************************************************************************
     Function:
-        void USBHALHandleBusEvent ( void )
-        
+	void USBHALHandleBusEvent ( void )
+
     Description:
-        This routine checks the USB for any events that may
-        have occured and handles them appropriately.  It may
-        be called directly to poll the USB and handle events
-        or it may be called in response to an interrupt.
+	This routine checks the USB for any events that may
+	have occured and handles them appropriately.  It may
+	be called directly to poll the USB and handle events
+	or it may be called in response to an interrupt.
 
     Precondition:
-        USBInitialize must have been called to initialize the
-        USB SW stack.
+	USBInitialize must have been called to initialize the
+	USB SW stack.
 
     Parameters:
-        None
-        
+	None
+
     Return Values:
-        None
-        
+	None
+
     Side Effects:
-        Depend on the event that may have occured.
-        
+	Depend on the event that may have occured.
+
     Remarks:
-        None
-              
+	None
+
  *************************************************************************/
 
 void USBHALHandleBusEvent ( void );
@@ -348,34 +348,34 @@ void USBHALHandleBusEvent ( void );
 
 /*************************************************************************
     Function:
-        BOOL USBHALStallPipe( TRANSFER_FLAGS pipe )
-        
+	BOOL USBHALStallPipe( TRANSFER_FLAGS pipe )
+
     Description:
-        This routine stalls the given endpoint.
+	This routine stalls the given endpoint.
 
     Preconditions:
-        USBHALInitialize must have been called to initialize
-        the USB HAL.
-        
-    Parameters:
-        pipe -  Uses the TRANSFER_FLAGS (see USBCommon.h) format to
-                identify the endpoint and direction making up the
-                pipe to stall.
+	USBHALInitialize must have been called to initialize
+	the USB HAL.
 
-        Note: Only ep_num and direction fields are required.
-        
+    Parameters:
+	pipe -  Uses the TRANSFER_FLAGS (see USBCommon.h) format to
+		identify the endpoint and direction making up the
+		pipe to stall.
+
+	Note: Only ep_num and direction fields are required.
+
     Return Values:
-        TRUE if able to stall endpoint, FALSE if not.
-        
+	TRUE if able to stall endpoint, FALSE if not.
+
     Side Effects:
-        The endpoint will stall if additional data transfer is
-        attempted.
-        Given endpoint has been stalled.
-  
+	The endpoint will stall if additional data transfer is
+	attempted.
+	Given endpoint has been stalled.
+
     Remarks:
-        Starting another data transfer automatically
-        "un-stalls" the endpoint.
-        
+	Starting another data transfer automatically
+	"un-stalls" the endpoint.
+
  *************************************************************************/
 /*
  Note: This function is implemented as a macro, calling directly into
@@ -389,29 +389,29 @@ BOOL USBHALStallPipe( TRANSFER_FLAGS pipe );
 
 /******************************************************************************
     Function:
-        BOOL USBHALUnstallPipe( TRANSFER_FLAGS pipe )
-        
+	BOOL USBHALUnstallPipe( TRANSFER_FLAGS pipe )
+
     Description:
-        This routine clears the stall condition for the given pipe.
-        
+	This routine clears the stall condition for the given pipe.
+
     PreCondition:
-        Assumes OTGCORE_DeviceEnable has been called and
-        OTGCORE_StallPipe has been called on the given pipe.
-        
+	Assumes OTGCORE_DeviceEnable has been called and
+	OTGCORE_StallPipe has been called on the given pipe.
+
     Parameters:
-        pipe -  Uses the TRANSFER_FLAGS (see USBCommon.h) format to
-                identify the endpoint and direction making up the
-                pipe to unstall.
-                
+	pipe -  Uses the TRANSFER_FLAGS (see USBCommon.h) format to
+		identify the endpoint and direction making up the
+		pipe to unstall.
+
     Return Values:
-        TRUE if able to stall the pipe, FALSE if not.
-        
+	TRUE if able to stall the pipe, FALSE if not.
+
     Side Effects:
-        The BSTALL and UOWN bits (and all other control bits) in
-        the BDT for the given pipe will be cleared.
+	The BSTALL and UOWN bits (and all other control bits) in
+	the BDT for the given pipe will be cleared.
 
     Remarks:
-        None
+	None
 
  *****************************************************************************/
 /*
@@ -426,26 +426,26 @@ BOOL USBHALUnstallPipe( TRANSFER_FLAGS pipe );
 
 /**************************************************************************
     Function:
-        USBHALGetStalledEndpoints
-        
+	USBHALGetStalledEndpoints
+
     Description:
-        This function returns a 16-bit bitmapped value with a
-        bit set in the position of any endpoint that is stalled
-        (i.e. if endpoint 0 is stalled then bit 0 is set, if
-        endpoint 1 is stalled then bit 1 is set, etc.).     
-    
+	This function returns a 16-bit bitmapped value with a
+	bit set in the position of any endpoint that is stalled
+	(i.e. if endpoint 0 is stalled then bit 0 is set, if
+	endpoint 1 is stalled then bit 1 is set, etc.).
+
     Preconditions:
-        USBHALInitialize must have been called to initialize
-        the USB HAL.
+	USBHALInitialize must have been called to initialize
+	the USB HAL.
 
     Parameters:
-        None
+	None
 
     Return Values:
-        Bitmap of the currently stalled endpoints (see overview).
+	Bitmap of the currently stalled endpoints (see overview).
 
     Remarks:
-        None
+	None
  *************************************************************************/
 
 /*
@@ -460,36 +460,36 @@ UINT16 USBHALGetStalledEndpoints ( void );
 
 /******************************************************************************
     Function:
-        BOOL USBHALFlushPipe( TRANSFER_FLAGS pipe )
-        
-    Description:
-        This routine clears any pending transfers on the given
-        pipe.
-        
-    Preconditions:
-        USBHALInitialize must have been called to initialize the
-        USB HAL.
+	BOOL USBHALFlushPipe( TRANSFER_FLAGS pipe )
 
-        The caller must ensure that there is no possible way for
-        hardware to be currently accessing the pipe (see notes).
+    Description:
+	This routine clears any pending transfers on the given
+	pipe.
+
+    Preconditions:
+	USBHALInitialize must have been called to initialize the
+	USB HAL.
+
+	The caller must ensure that there is no possible way for
+	hardware to be currently accessing the pipe (see notes).
 
     Parameters:
-        pipe -  Uses the TRANSFER_FLAGS (see USBCommon.h) format to
-                identify the endpoint and direction making up the
-                pipe to flush.
+	pipe -  Uses the TRANSFER_FLAGS (see USBCommon.h) format to
+		identify the endpoint and direction making up the
+		pipe to flush.
 
     Return Values:
-        TRUE if successful, FALSE if not.
+	TRUE if successful, FALSE if not.
 
     Side Effects:
-        Transfer data for this pipe has been zero'd out.
+	Transfer data for this pipe has been zero'd out.
 
     Remarks:
-        This routine ignores the normal HW protocol for ownership
-        of the pipe data and flushes the pipe, even if it is in
-        process.  Thus, the caller must ensure that data transfer
-        cannot be in process.  This situation occurs when a
-        transfer has been terminated early by the host.
+	This routine ignores the normal HW protocol for ownership
+	of the pipe data and flushes the pipe, even if it is in
+	process.  Thus, the caller must ensure that data transfer
+	cannot be in process.  This situation occurs when a
+	transfer has been terminated early by the host.
  *****************************************************************************/
 
 BOOL USBHALFlushPipe( TRANSFER_FLAGS pipe );
@@ -497,99 +497,99 @@ BOOL USBHALFlushPipe( TRANSFER_FLAGS pipe );
 
 /**************************************************************************
     Function:
-        USBHALTransferData
-        
+	USBHALTransferData
+
     Description:
-        This routine prepares to transfer data on the USB.
-        If the system is in device mode, the actual transfer
-        will not occur until the host peforms an OUT request
-        to the given endpoint.  If the system is in host mode,
-        the transfer will not start until the token has been
-        sent on the bus.
+	This routine prepares to transfer data on the USB.
+	If the system is in device mode, the actual transfer
+	will not occur until the host peforms an OUT request
+	to the given endpoint.  If the system is in host mode,
+	the transfer will not start until the token has been
+	sent on the bus.
 
     Preconditions:
-        1. USBHALInitialize must have been called to
-           initialize the USB HAL.
-        2. The endpoint through which the data will be
-           transferred must be configured as appropriate by a
-           call to USBHALSetEpConfiguration.
-        3. The bus must have been enumerated (either as a host
-           or device).  Except for EP0 transfers.
+	1. USBHALInitialize must have been called to
+	   initialize the USB HAL.
+	2. The endpoint through which the data will be
+	   transferred must be configured as appropriate by a
+	   call to USBHALSetEpConfiguration.
+	3. The bus must have been enumerated (either as a host
+	   or device).  Except for EP0 transfers.
 
     Parameters:
-        flags - Flags consists of the endpoint number OR'd
-                with one or more flags indicating transfer
-                direction and such (see "Data Transfer
-                Macros" in USBCommon.h):
-    
-                  7 6 5 4 3 2 1 0 - Description
-                  | | | | \_____/
-                  | | | |    +----- Endpoint Number
-                  | | | +---------- Short or zero-size pkt
-                  | | +------------ Data Toggle 0/1
-                  | +-------------- Force Data Toggle
-                  +---------------- 1=Transmit/0=Receive
+	flags - Flags consists of the endpoint number OR'd
+		with one or more flags indicating transfer
+		direction and such (see "Data Transfer
+		Macros" in USBCommon.h):
 
-        buffer      Address of the buffer to receive data.
+		  7 6 5 4 3 2 1 0 - Description
+		  | | | | \_____/
+		  | | | |    +----- Endpoint Number
+		  | | | +---------- Short or zero-size pkt
+		  | | +------------ Data Toggle 0/1
+		  | +-------------- Force Data Toggle
+		  +---------------- 1=Transmit/0=Receive
 
-        size        Number of bytes of data to transfer.
+	buffer      Address of the buffer to receive data.
+
+	size        Number of bytes of data to transfer.
 
     Return Values:
-        TRUE if the HAL was able to successfully start the
-        data transfer, FALSE if not.
-        
+	TRUE if the HAL was able to successfully start the
+	data transfer, FALSE if not.
+
     Side Effects:
-        The HAL has prepared to transfer the data on the USB.
+	The HAL has prepared to transfer the data on the USB.
 
     Ramarks:
-        The HAL will continue the data transfer, keeping track
-        of the buffer address, data remaining, and ping-pong
-        buffer details internally when USBHALHandleBusEvent is
-        called (either polled or in response to an interrupt).
-        The caller will receive notification that the transfer
-        has completed when the EVT_XFER event is passed into
-        the USBHALBusEventCallout call-out function.
-        
+	The HAL will continue the data transfer, keeping track
+	of the buffer address, data remaining, and ping-pong
+	buffer details internally when USBHALHandleBusEvent is
+	called (either polled or in response to an interrupt).
+	The caller will receive notification that the transfer
+	has completed when the EVT_XFER event is passed into
+	the USBHALBusEventCallout call-out function.
+
  *************************************************************************/
 
 BOOL USBHALTransferData ( TRANSFER_FLAGS    flags,
-                          void             *buffer,
-                          unsigned int      size      );
+			  void             *buffer,
+			  unsigned int      size      );
 
 
 /*************************************************************************
     Function:
-        USBHALSetEpConfiguration
-        
-    Description:
-        This routine allows the caller to configure various
-        options (see "Flags for USBHALSetEpConfiguration",
-        below) and set the behavior for the given endpoint.
-        
-    Precondition:
-        USBHALInitialize has been called.
-        
-    Parameters:
-        ep_num - Number of endpoint to configur, Must be
-                 (ep_num >=0) && (ep_num <= USB_DEV_HIGHEST_EP_NUMBER)
-                  max_pkt_size Size of largest packet this enpoint can
-                  transfer.
+	USBHALSetEpConfiguration
 
-        flags - Configuration flags (see below)
+    Description:
+	This routine allows the caller to configure various
+	options (see "Flags for USBHALSetEpConfiguration",
+	below) and set the behavior for the given endpoint.
+
+    Precondition:
+	USBHALInitialize has been called.
+
+    Parameters:
+	ep_num - Number of endpoint to configur, Must be
+		 (ep_num >=0) && (ep_num <= USB_DEV_HIGHEST_EP_NUMBER)
+		  max_pkt_size Size of largest packet this enpoint can
+		  transfer.
+
+	flags - Configuration flags (see below)
 
     Return Values:
-        TRUE if successful, FALSE if not.
-        
+	TRUE if successful, FALSE if not.
+
     Side Effects:
-        The endpoint has been configured as desired.
+	The endpoint has been configured as desired.
 
     Remarks:
-        The base address and size of the buffer is not set by
-        this routine.  Those features of an endpoint are
-        dynamically managed by the USBHALTransferData routine.
-        An endpoint can be "de-configured" by setting its max
-        packet size to 0.  When doing this, you should also
-        set all flags to 0.
+	The base address and size of the buffer is not set by
+	this routine.  Those features of an endpoint are
+	dynamically managed by the USBHALTransferData routine.
+	An endpoint can be "de-configured" by setting its max
+	packet size to 0.  When doing this, you should also
+	set all flags to 0.
  *************************************************************************/
 
 BOOL USBHALSetEpConfiguration ( BYTE ep_num, UINT16 max_pkt_size, UINT16 flags );
@@ -618,28 +618,28 @@ BOOL USBHALSetEpConfiguration ( BYTE ep_num, UINT16 max_pkt_size, UINT16 flags )
 
 /*************************************************************************
     Function:
-        USBHALInitialize
-        
+	USBHALInitialize
+
     Description:
-        This call performs the basic initialization of the USB
-        HAL.  This routine must be called before any of the
-        other HAL interface routines are called.
-        
+	This call performs the basic initialization of the USB
+	HAL.  This routine must be called before any of the
+	other HAL interface routines are called.
+
     Precondition:
-        The system has been initialized.
-        
+	The system has been initialized.
+
     Paramters:
-        flags -  Initialization flags
-        
+	flags -  Initialization flags
+
     Return Values:
-        TRUE if successful, FALSE if not.
+	TRUE if successful, FALSE if not.
 
     Side Effects:
-        The USB HAL SW stack was initialized.
+	The USB HAL SW stack was initialized.
 
     Remarks:
-        This routine can be called to reset the controller.
-        
+	This routine can be called to reset the controller.
+
  *************************************************************************/
 
 BOOL USBHALInitialize ( unsigned long flags );
@@ -648,4 +648,3 @@ BOOL USBHALInitialize ( unsigned long flags );
 /*************************************************************************
  * EOF
  */
-

@@ -4,3 +4,4 @@
 *.elf
 *.mcs
 *.map
+*.srec

@@ -25,13 +25,13 @@ Description:
     applications by providing an abstraction of the USB module and its registers
     and bits such that the source code for the can be the same across various
     hardware platforms.
-    
+
     Note that this file does not include the header files for any client or
     function drivers.
-    
+
     This file is located in the "\<Install Directory\>\\Microchip\\Include\\USB"
     directory.
-    
+
     When including this file in a new project, this file can either be
     referenced from the directory in which it was installed or copied
     directly into the user application folder. If the first method is
@@ -41,18 +41,18 @@ Description:
     application folder is located in the same folder as the Microchip
     folder (like the current demo folders), then the following include
     paths need to be added to the application's project:
-    
-    .    
+
+    .
 
     ..\\..\\Microchip\\Include
-    
+
     If a different directory structure is used, modify the paths as
     required. An example using absolute paths instead of relative paths
     would be the following:
-    
+
     C:\\Microchip Solutions\\Microchip\\Include
-    
-    C:\\Microchip Solutions\\My Demo Application 
+
+    C:\\Microchip Solutions\\My Demo Application
 
 ******************************************************************************/
 /******************************************************************************
@@ -112,22 +112,22 @@ Description:
 
 #include "usb_config.h"             // Must be defined by the application
 
-#include "USB/usb_common.h"         // Common USB library definitions
-#include "USB/usb_ch9.h"            // USB device framework definitions
+#include "usb_common.h"         // Common USB library definitions
+#include "usb_ch9.h"            // USB device framework definitions
 
 #if defined( USB_SUPPORT_DEVICE )
-    #include "USB/usb_device.h"     // USB Device abstraction layer interface
+    #include "usb_device.h"     // USB Device abstraction layer interface
 #endif
 
 #if defined( USB_SUPPORT_HOST )
-    #include "USB/usb_host.h"       // USB Host abstraction layer interface
+    #include "usb_host.h"       // USB Host abstraction layer interface
 #endif
 
 #if defined ( USB_SUPPORT_OTG )
-    #include "USB/usb_otg.h"
+    #include "usb_otg.h"
 #endif
 
-#include "USB/usb_hal.h"            // Hardware Abstraction Layer interface
+#include "usb_hal.h"            // Hardware Abstraction Layer interface
 
 // *****************************************************************************
 // *****************************************************************************
@@ -143,4 +143,3 @@ Description:
 /*************************************************************************
  * EOF
  */
-
