@@ -15,13 +15,10 @@ MCU = 32MX210F016B
 SOURCES = main.c usb/usb_descriptors.c usb/usb_device.c
 # OUTDIR: directory to use for output
 OUTDIR = build
-# PORT: location of programmer
-PORT = /dev/ttyACM0
 # define flags
 CFLAGS = -g -O1 -Wall -Wunused -mprocessor=$(MCU) -x c
 ASFLAGS = -x assembler-with-cpp -Wa,-gstabs
 LDFLAGS = -Wl,-Map=$(OUTDIR)/$(TARGET).map -mprocessor=$(MCU)
-
 #######################################
 # end of user configuration
 #######################################
@@ -43,7 +40,7 @@ MKDIR	= mkdir -p
 DEPEND = $(SOURCES:.c=.d)
 
 # list all object files
-OBJECTS = $(addprefix $(OUTDIR)/,$(SOURCES:.c=.o))
+OBJECTS = $(addprefix $(OUTDIR)/,$(notdir $(SOURCES:.c=.o)))
 
 # default: build all
 all: $(OUTDIR)/$(TARGET).elf $(OUTDIR)/$(TARGET).hex $(OUTDIR)/$(TARGET).srec
@@ -58,7 +55,7 @@ $(OUTDIR)/%.hex: $(OUTDIR)/%.elf
 	$(OBJCOPY) -O ihex -R .eeprom $< $@
 
 $(OUTDIR)/%.o: src/%.c | $(OUTDIR)
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) -o $(addprefix $(OUTDIR)/,$(notdir $@)) $<
 
 %.lst: %.c
 	$(CC) -c $(ASFLAGS) -Wa,-anlhd $< > $@
