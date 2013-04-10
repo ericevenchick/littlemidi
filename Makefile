@@ -42,21 +42,30 @@ DEPEND = $(SOURCES:.c=.d)
 # list all object files
 OBJECTS = $(addprefix $(OUTDIR)/,$(notdir $(SOURCES:.c=.o)))
 
-# default: build all
-all: $(OUTDIR)/$(TARGET).elf $(OUTDIR)/$(TARGET).hex $(OUTDIR)/$(TARGET).srec
+# default: build hex file
+all: $(OUTDIR)/$(TARGET).hex
 
-$(OUTDIR)/%.srec: $(OUTDIR)/%.elf
+# S-record file
+$(OUTDIR)/$(TARGET).srec: $(OUTDIR)/%.elf
 	$(OBJCOPY) -j .text -j .data -O srec $< $@
 
-$(OUTDIR)/%.elf: $(OBJECTS)
+# Intel hex file
+$(OUTDIR)/$(TARGET).hex: $(OUTDIR)/$(TARGET).elf
+	$(OBJCOPY) -O ihex -R .eeprom $< $@
+
+# elf file
+$(OUTDIR)/$(TARGET).elf: $(OBJECTS)
 	$(CC) $(OBJECTS) $(LDFLAGS) $(LIBS) -o $@
 
-$(OUTDIR)/%.hex: $(OUTDIR)/%.elf
-	$(OBJCOPY) -O ihex -R .eeprom $< $@
+# build all objects
 
 $(OUTDIR)/%.o: src/%.c | $(OUTDIR)
 	$(CC) -c $(CFLAGS) -o $(addprefix $(OUTDIR)/,$(notdir $@)) $<
 
+$(OUTDIR)/%.o: src/usb/%.c | $(OUTDIR)
+	$(CC) -c $(CFLAGS) -o $(addprefix $(OUTDIR)/,$(notdir $@)) $<
+
+# asm listing
 %.lst: %.c
 	$(CC) -c $(ASFLAGS) -Wa,-anlhd $< > $@
 
@@ -64,5 +73,6 @@ $(OUTDIR)/%.o: src/%.c | $(OUTDIR)
 $(OUTDIR):
 	$(MKDIR) $(OUTDIR)
 
+# remove all build artifacts and executables
 clean:
 	-$(RM) $(OUTDIR)/*
